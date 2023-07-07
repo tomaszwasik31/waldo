@@ -53,7 +53,9 @@ function App() {
       <GlobalStyles />
       <div className="main-wrapper">
         <DevLinkProvider>
-          <Cursor style={cursorNoEvents} />
+          <div style={cursorNoEvents}>
+            <Cursor />
+          </div>
           {renderScreen()}
         </DevLinkProvider>
       </div>
