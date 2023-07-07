@@ -1,0 +1,36 @@
+.cursor-wrapper {
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+  z-index: 999;
+
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.cursor-container {
+  position: relative;
+  z-index: 999;
+
+  display: flex;
+  width: 60px;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+
+  border: 3px dashed var(--gold-980e8c4a);
+  border-radius: 100%;
+
+  background-color: hsla(200.75675675675674, 0.00%, 0.00%, 0.43);
+}
+
+.cursor-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 100%;
+  background-color: var(--gold-980e8c4a);
+}
