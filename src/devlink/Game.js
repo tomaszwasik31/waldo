@@ -3,7 +3,12 @@ import * as _Builtin from "./_Builtin";
 import * as _utils from "./utils";
 import _styles from "./Game.module.css";
 
-export function Game({ as: _Component = _Builtin.Block, btnCloseGame = {} }) {
+export function Game({
+  as: _Component = _Builtin.Block,
+  btnCloseGame = {},
+  timerValue = "1534",
+  mapClick = {},
+}) {
   return (
     <_Component className={_utils.cx(_styles, "section_game")} tag="div">
       <_Builtin.Block
@@ -26,7 +31,7 @@ export function Game({ as: _Component = _Builtin.Block, btnCloseGame = {} }) {
               tag="div"
             >
               <_Builtin.Paragraph className={_utils.cx(_styles, "timer-txt")}>
-                {"1534"}
+                {timerValue}
               </_Builtin.Paragraph>
               <_Builtin.Paragraph
                 className={_utils.cx(_styles, "timer-txt", "text-color-blue")}
@@ -79,7 +84,8 @@ export function Game({ as: _Component = _Builtin.Block, btnCloseGame = {} }) {
           loading="lazy"
           width="auto"
           height="auto"
-          src="https://uploads-ssl.webflow.com/64a69f956a633fc81165b255/64a6d3efe3dbb06c914da5e4_map-1.jpg"
+          src="https://uploads-ssl.webflow.com/64a69f956a633fc81165b255/64a6d3efe3dbb06c914da5e4_map-1.webp"
+          {...mapClick}
         />
       </_Builtin.Block>
     </_Component>

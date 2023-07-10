@@ -13,6 +13,8 @@ export function Home({
   btnNewGame = {},
   btnScoreBoard = {},
   btnChooseMap = {},
+  homeScoreboardRecords = "1.First player : 123 sec",
+  homeScoreRecords,
 }) {
   _interactions.useInteractions(_interactionsData, _styles);
 
@@ -46,15 +48,9 @@ export function Home({
                 className={_utils.cx(_styles, "top-scoreboard-container")}
                 tag="div"
               >
-                <_Builtin.Paragraph>
-                  {"1.First player : 123 sec"}
-                </_Builtin.Paragraph>
-                <_Builtin.Paragraph>
-                  {"2.second player : 123 sec"}
-                </_Builtin.Paragraph>
-                <_Builtin.Paragraph>
-                  {"3.third player : 123 sec"}
-                </_Builtin.Paragraph>
+                <_Builtin.Block className={_utils.cx(_styles, "txt")} tag="div">
+                  {homeScoreRecords ?? "No data"}
+                </_Builtin.Block>
                 <_Builtin.Link
                   className={_utils.cx(_styles, "button")}
                   button={true}

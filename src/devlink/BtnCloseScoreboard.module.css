@@ -1,0 +1,16 @@
+.close-popup {
+  position: absolute;
+  left: auto;
+  top: 5%;
+  right: 5%;
+  bottom: auto;
+  z-index: 888;
+
+  padding: 0.2rem 1rem;
+
+  border-radius: 100%;
+
+  background-color: var(--crimson-cde79e4b);
+
+  font-size: 2rem;
+}

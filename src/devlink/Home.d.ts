@@ -6,4 +6,6 @@ declare function Home(props: {
   btnNewGame?: Types.Devlink.RuntimeProps;
   btnScoreBoard?: Types.Devlink.RuntimeProps;
   btnChooseMap?: Types.Devlink.RuntimeProps;
+  homeScoreboardRecords?: React.ReactNode;
+  homeScoreRecords?: Types.Devlink.Slot;
 }): React.JSX.Element;
