@@ -1,16 +1,23 @@
 import React from "react";
 import * as _Builtin from "./_Builtin";
 import * as _utils from "./utils";
-import _styles from "./GamaWonPopup.module.css";
+import _styles from "./GameWon.module.css";
 
-export function GamaWonPopup({
+export function GameWon({
   as: _Component = _Builtin.Block,
   btnSaveRecord = {},
   btnCloseGameWon = {},
   inputName = "name-3",
+  gameWon = {},
+  currentRecord,
+  playerName = "name-3",
 }) {
   return (
-    <_Component className={_utils.cx(_styles, "popup-component")} tag="div">
+    <_Component
+      className={_utils.cx(_styles, "popup-component")}
+      tag="div"
+      {...gameWon}
+    >
       <_Builtin.Block
         className={_utils.cx(_styles, "popup-container")}
         tag="div"
@@ -25,7 +32,7 @@ export function GamaWonPopup({
             {"Your time:"}
           </_Builtin.Heading>
           <_Builtin.Heading className={_utils.cx(_styles, "txt-time")} tag="h3">
-            {"123"}
+            {currentRecord ?? "123"}
           </_Builtin.Heading>
           <_Builtin.Heading className={_utils.cx(_styles, "txt-time")} tag="h3">
             {"Enter Your Name"}
@@ -45,7 +52,7 @@ export function GamaWonPopup({
                 type="text"
                 disabled={false}
                 required={false}
-                id={inputName}
+                id={playerName}
               />
             </_Builtin.FormForm>
             <_Builtin.FormSuccessMessage>

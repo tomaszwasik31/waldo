@@ -8,7 +8,7 @@ export * from "./devlink";
 export * from "./BtnCloseScoreboard";
 export * from "./Cursor";
 export * from "./FullScoreboard";
-export * from "./GamaWonPopup";
 export * from "./Game";
+export * from "./GameWon";
 export * from "./GlobalStyles";
 export * from "./Home";

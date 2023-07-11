@@ -4,7 +4,7 @@ import { db } from "./config/firebase";
 import { useEffect, useState } from "react";
 import { getDocs, collection, addDoc } from "firebase/firestore";
 import { GlobalStyles } from "./devlink/GlobalStyles.js";
-import { Home, Game, Cursor, FullScoreboard } from "./devlink";
+import { Home, Game, Cursor, FullScoreboard, GameWon } from "./devlink";
 import { DevLinkProvider } from "./devlink";
 
 function App() {
@@ -14,12 +14,20 @@ function App() {
 
   // State and handlers for game screen
   const [appScreen, setAppScreen] = useState("Home");
+
   const handleBtnNewGame = () => {
     setAppScreen("Game");
     setTimer(0);
+    setCharacterFound(initialStateCharacters);
   };
-  const handleBtnCloseGame = () => {
+
+  const resetApp = () => {
     setAppScreen("Home");
+    setShowGameWon(false);
+    setShowFullScoreboard(false);
+
+    setTimer(0);
+    setCharacterFound(initialStateCharacters);
   };
 
   // State and handlers for scoreboard
@@ -39,7 +47,7 @@ function App() {
     const topRecords = sortedData.slice(0, numOfRecords);
     const transformedData = topRecords.map((item, index) => (
       <div key={index}>
-        {index + 1}. {item.name} {item.time}
+        {index + 1}. {item.name} {item.time}sec
       </div>
     ));
     return transformedData;
@@ -59,7 +67,7 @@ function App() {
       }));
       setRecords(filteredData);
     } catch (err) {
-      console.log("error");
+      console.error(err);
     }
   };
 
@@ -82,7 +90,7 @@ function App() {
       case "Game":
         return (
           <Game
-            btnCloseGame={{ onClick: handleBtnCloseGame }}
+            btnCloseGame={{ onClick: resetApp }}
             timerValue={timer}
             mapClick={{ onClick: handleMapClick }}
           />
@@ -93,9 +101,15 @@ function App() {
   };
 
   // in Game logic
+  const initialStateCharacters = {
+    waldo: false,
+    odlaw: false,
+    wizard: false,
+  };
 
   const [timer, setTimer] = useState(0);
   const [intervalId, setIntervalId] = useState(null);
+  const [characterFound, setCharacterFound] = useState(initialStateCharacters);
 
   useEffect(() => {
     // Start the timer
@@ -113,8 +127,23 @@ function App() {
 
   const stopTimer = () => {
     clearInterval(intervalId);
-    console.log(timer);
   };
+
+  const isWon = () => {
+    return Object.values(characterFound).every((found) => found === true);
+  };
+
+  const [showGameWon, setShowGameWon] = useState(false);
+  const toggleGameWon = () => {
+    setShowGameWon((prevState) => !prevState);
+  };
+
+  useEffect(() => {
+    if (isWon()) {
+      stopTimer();
+      toggleGameWon();
+    }
+  }, [characterFound]);
 
   const handleMapClick = (event) => {
     const imgElement = event.target;
@@ -124,11 +153,60 @@ function App() {
     const relativeX = (clickX / imgRect.width) * 100;
     const relativeY = (clickY / imgRect.height) * 100;
 
-    if(relativeX < 32.77 && relativeX > 30.23){
-      console.log('yes');
+    if (
+      relativeX < 33.33 &&
+      relativeX > 30 &&
+      relativeY < 17.5 &&
+      relativeY > 13.6
+    ) {
+      setCharacterFound((prevCharacterFound) => ({
+        ...prevCharacterFound,
+        waldo: true,
+      }));
     }
-    console.log(`Clicked position: (${relativeX}%, ${relativeY}%)`);
-    // stopTimer();
+    if (
+      relativeX < 50.75 &&
+      relativeX > 47.73 &&
+      relativeY < 72.8 &&
+      relativeY > 66
+    ) {
+      setCharacterFound((prevCharacterFound) => ({
+        ...prevCharacterFound,
+        odlaw: true,
+      }));
+    }
+    if (
+      relativeX < 81.4 &&
+      relativeX > 78.7 &&
+      relativeY < 58 &&
+      relativeY > 53.1
+    ) {
+      setCharacterFound((prevCharacterFound) => ({
+        ...prevCharacterFound,
+        wizard: true,
+      }));
+    }
+  };
+
+  const handleBtnSaveRecord = () => {
+    const inputElement = document.querySelector("#name-3");
+    const inputValue = inputElement.value;
+    console.log(inputValue);
+    submitRecord(inputValue, timer);
+    toggleGameWon();
+    resetApp();
+    getRecordList();
+  };
+
+  const submitRecord = async (inputValue, timer) => {
+    try {
+      await addDoc(recordsCollectionRef, {
+        name: inputValue,
+        time: timer,
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -146,6 +224,14 @@ function App() {
               btnCloseScoreboard={{ onClick: toggleScoreboard }}
             />
           )}
+
+          {showGameWon && (
+            <GameWon
+              currentRecord={timer + "sec"}
+              btnSaveRecord={{ onClick: handleBtnSaveRecord }}
+              btnCloseGameWon={{ onClick: resetApp }}
+            />
+          )}
         </DevLinkProvider>
       </div>
     </div>
@@ -153,45 +239,3 @@ function App() {
 }
 
 export default App;
-
-//new record
-
-// const [newRecordName, setNewRecordName] = useState("");
-// const [newRecordTime, setNewRecordTime] = useState(0);
-
-// const onSubmitRecord = async () => {
-//   try {
-//     await addDoc(recordsCollectionRef, {
-//       name: newRecordName,
-//       time: newRecordTime,
-//     });
-//     getRecordList();
-
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
-
-{
-  /* <div className="App">
-<h1>Waldo app</h1>
-<input
-  type="text"
-  placeholder="name"
-  onChange={(e) => setNewRecordName(e.target.value)}
-/>
-<input
-  type="number"
-  placeholder="time"
-  onChange={(e) => setNewRecordTime(Number(e.target.value))}
-/>
-<button onClick={onSubmitRecord}>Submit score</button>
-
-{records.map((record) => (
-  <div key={record.id}>
-    <p>{record.name}</p>
-    <p>{record.time}</p>
-  </div>
-))}
-</div> */
-}
