@@ -36,11 +36,6 @@ function App() {
     setShowFullScoreboard((prevState) => !prevState);
   };
 
-  // State and handlers for choosing map
-  const handleBtnChooseMap = () => {
-    console.log("choose map");
-  };
-
   // Function to transform and filter records
   function recordsToDom(originalData, numOfRecords) {
     const sortedData = [...originalData].sort((a, b) => a.time - b.time);
@@ -85,7 +80,6 @@ function App() {
             homeScoreRecords={recordsToDom(records, 3)}
             btnNewGame={{ onClick: handleBtnNewGame }}
             btnScoreBoard={{ onClick: toggleScoreboard }}
-            btnChooseMap={{ onClick: handleBtnChooseMap }}
           />
         );
       case "Game":
@@ -142,7 +136,7 @@ function App() {
   const isWon = () => {
     return Object.values(characterFound).every((found) => found === true);
   };
-  
+
   useEffect(() => {
     if (isWon()) {
       stopTimer();

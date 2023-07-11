@@ -74,21 +74,7 @@ export function Home({
                   }}
                   {...btnNewGame}
                 >
-                  {"New Game"}
-                </_Builtin.Link>
-                <_Builtin.Link
-                  className={_utils.cx(
-                    _styles,
-                    "button",
-                    "background-color-blue"
-                  )}
-                  button={true}
-                  options={{
-                    href: "#",
-                  }}
-                  {...btnChooseMap}
-                >
-                  {"Choose Map"}
+                  {"Start Game"}
                 </_Builtin.Link>
               </_Builtin.Block>
             </_Builtin.Block>
