@@ -4,4 +4,5 @@ import * as Types from "./types";
 declare function Cursor(props: {
   as?: React.ElementType;
   cursorBorder?: Types.Devlink.RuntimeProps;
+  cursorWrapper?: Types.Devlink.RuntimeProps;
 }): React.JSX.Element;

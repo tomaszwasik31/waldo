@@ -227,7 +227,11 @@ function App() {
       <div className="main-wrapper">
         <DevLinkProvider>
           <div style={cursorNoEvents}>
-            <Cursor cursorBorder={{ style: { borderColor: cursorColor } }} />
+            <Cursor
+              cursorWrapper={{ style: { display: "flex" } }} // hidden in Webflow
+              fullScoreboard={recordsToDom(records, 999)}
+              cursorBorder={{ style: { borderColor: cursorColor } }}
+            />
           </div>
           {renderScreen()}
           {showFullScoreboard && (

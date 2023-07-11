@@ -2303,6 +2303,10 @@ p {
   color: var(--black-4c69a0d4);
 }
 
+a {
+  cursor: none;
+}
+
 ul {
   margin-top: 0rem;
   margin-bottom: 0rem;
