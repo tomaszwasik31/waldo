@@ -8,6 +8,9 @@ export function Game({
   btnCloseGame = {},
   timerValue = "1534",
   mapClick = {},
+  imgWaldo = {},
+  imgOdlaw = {},
+  imgWizard = {},
 }) {
   return (
     <_Component className={_utils.cx(_styles, "section_game")} tag="div">
@@ -20,12 +23,6 @@ export function Game({
           tag="div"
         >
           <_Builtin.Block className={_utils.cx(_styles, "game_bar")} tag="div">
-            <_Builtin.Heading tag="h2">
-              {"Where's "}
-              <_Builtin.Span className={_utils.cx(_styles, "red")}>
-                {"Waldo?"}
-              </_Builtin.Span>
-            </_Builtin.Heading>
             <_Builtin.Block
               className={_utils.cx(_styles, "timer-container")}
               tag="div"
@@ -43,19 +40,19 @@ export function Game({
               className={_utils.cx(_styles, "characters-container")}
               tag="div"
             >
+              <_Builtin.Heading tag="h2">
+                {"Find "}
+                <_Builtin.Span className={_utils.cx(_styles, "red")}>
+                  {":"}
+                </_Builtin.Span>
+              </_Builtin.Heading>
               <_Builtin.Image
                 className={_utils.cx(_styles, "character-img")}
                 loading="lazy"
                 width="auto"
                 height="auto"
                 src="https://uploads-ssl.webflow.com/64a69f956a633fc81165b255/64a6d2eb8dd82d7ceebeb32f_waldo.webp"
-              />
-              <_Builtin.Image
-                className={_utils.cx(_styles, "character-img")}
-                loading="lazy"
-                width="auto"
-                height="auto"
-                src="https://uploads-ssl.webflow.com/64a69f956a633fc81165b255/64a6d2ebec5c6f5611cd814e_wizzard.webp"
+                {...imgWaldo}
               />
               <_Builtin.Image
                 className={_utils.cx(_styles, "character-img")}
@@ -63,6 +60,15 @@ export function Game({
                 width="auto"
                 height="auto"
                 src="https://uploads-ssl.webflow.com/64a69f956a633fc81165b255/64a6d2ebec5c6f5611cd8158_odlaw.webp"
+                {...imgOdlaw}
+              />
+              <_Builtin.Image
+                className={_utils.cx(_styles, "character-img")}
+                loading="lazy"
+                width="auto"
+                height="auto"
+                src="https://uploads-ssl.webflow.com/64a69f956a633fc81165b255/64a6d2ebec5c6f5611cd814e_wizzard.webp"
+                {...imgWizard}
               />
             </_Builtin.Block>
             <_Builtin.Link

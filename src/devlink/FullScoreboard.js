@@ -8,9 +8,14 @@ export function FullScoreboard({
   as: _Component = _Builtin.Block,
   btnCloseScoreboard = {},
   fullScoreboard = "No data",
+  popupContainerScoreboard = {},
 }) {
   return (
-    <_Component className={_utils.cx(_styles, "popup-component")} tag="div">
+    <_Component
+      className={_utils.cx(_styles, "popup-component")}
+      tag="div"
+      {...popupContainerScoreboard}
+    >
       <BtnCloseScoreboard btnCloseScoreBoard={btnCloseScoreboard} />
       <_Builtin.Block
         className={_utils.cx(_styles, "popup-container")}

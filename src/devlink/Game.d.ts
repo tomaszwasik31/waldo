@@ -6,4 +6,7 @@ declare function Game(props: {
   btnCloseGame?: Types.Devlink.RuntimeProps;
   timerValue?: React.ReactNode;
   mapClick?: Types.Devlink.RuntimeProps;
+  imgWaldo?: Types.Devlink.RuntimeProps;
+  imgOdlaw?: Types.Devlink.RuntimeProps;
+  imgWizard?: Types.Devlink.RuntimeProps;
 }): React.JSX.Element;

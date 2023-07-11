@@ -9,4 +9,8 @@ declare function GameWon(props: {
   gameWon?: Types.Devlink.RuntimeProps;
   currentRecord?: Types.Devlink.Slot;
   playerName?: Types.Basic.IdTextInput;
+  popupContainer?: Types.Devlink.RuntimeProps;
+  popupGameWon?: Types.Devlink.RuntimeProps;
+  text?: React.ReactNode;
+  popupContainerGamewon?: Types.Devlink.RuntimeProps;
 }): React.JSX.Element;

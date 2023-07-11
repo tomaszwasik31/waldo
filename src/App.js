@@ -18,6 +18,7 @@ function App() {
   const handleBtnNewGame = () => {
     setAppScreen("Game");
     setTimer(0);
+
     setCharacterFound(initialStateCharacters);
   };
 
@@ -26,7 +27,6 @@ function App() {
     setShowGameWon(false);
     setShowFullScoreboard(false);
 
-    setTimer(0);
     setCharacterFound(initialStateCharacters);
   };
 
@@ -73,6 +73,7 @@ function App() {
 
   useEffect(() => {
     getRecordList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Render the appropriate screen
@@ -93,6 +94,9 @@ function App() {
             btnCloseGame={{ onClick: resetApp }}
             timerValue={timer}
             mapClick={{ onClick: handleMapClick }}
+            imgWaldo={characterFound.waldo && { style: { opacity: "1" } }}
+            imgOdlaw={characterFound.odlaw && { style: { opacity: "1" } }}
+            imgWizard={characterFound.wizard && { style: { opacity: "1" } }}
           />
         );
       default:
@@ -113,6 +117,7 @@ function App() {
 
   useEffect(() => {
     // Start the timer
+
     const id = setInterval(() => {
       setTimer((prevTimer) => prevTimer + 1);
     }, 1000);
@@ -123,14 +128,10 @@ function App() {
     return () => {
       clearInterval(id);
     };
-  }, []);
+  }, [timer]);
 
   const stopTimer = () => {
     clearInterval(intervalId);
-  };
-
-  const isWon = () => {
-    return Object.values(characterFound).every((found) => found === true);
   };
 
   const [showGameWon, setShowGameWon] = useState(false);
@@ -138,12 +139,26 @@ function App() {
     setShowGameWon((prevState) => !prevState);
   };
 
+  const isWon = () => {
+    return Object.values(characterFound).every((found) => found === true);
+  };
+  
   useEffect(() => {
     if (isWon()) {
       stopTimer();
       toggleGameWon();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characterFound]);
+
+  const [cursorColor, setCursorColor] = useState("#ffc107");
+
+  const clickedOnCharacter = () => {
+    setCursorColor("red");
+    setTimeout(() => {
+      setCursorColor("#ffc107");
+    }, 500);
+  };
 
   const handleMapClick = (event) => {
     const imgElement = event.target;
@@ -163,6 +178,7 @@ function App() {
         ...prevCharacterFound,
         waldo: true,
       }));
+      clickedOnCharacter();
     }
     if (
       relativeX < 50.75 &&
@@ -174,6 +190,7 @@ function App() {
         ...prevCharacterFound,
         odlaw: true,
       }));
+      clickedOnCharacter();
     }
     if (
       relativeX < 81.4 &&
@@ -185,13 +202,14 @@ function App() {
         ...prevCharacterFound,
         wizard: true,
       }));
+      clickedOnCharacter();
     }
   };
 
   const handleBtnSaveRecord = () => {
     const inputElement = document.querySelector("#name-3");
     const inputValue = inputElement.value;
-    console.log(inputValue);
+
     submitRecord(inputValue, timer);
     toggleGameWon();
     resetApp();
@@ -215,11 +233,12 @@ function App() {
       <div className="main-wrapper">
         <DevLinkProvider>
           <div style={cursorNoEvents}>
-            <Cursor />
+            <Cursor cursorBorder={{ style: { borderColor: cursorColor } }} />
           </div>
           {renderScreen()}
           {showFullScoreboard && (
             <FullScoreboard
+              popupContainerScoreboard={{ style: { display: "flex" } }} // hidden in Webflow
               fullScoreboard={recordsToDom(records, 999)}
               btnCloseScoreboard={{ onClick: toggleScoreboard }}
             />
@@ -227,6 +246,7 @@ function App() {
 
           {showGameWon && (
             <GameWon
+              popupContainerGamewon={{ style: { display: "flex" } }} // hidden in Webflow
               currentRecord={timer + "sec"}
               btnSaveRecord={{ onClick: handleBtnSaveRecord }}
               btnCloseGameWon={{ onClick: resetApp }}

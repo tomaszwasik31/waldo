@@ -11,12 +11,16 @@ export function GameWon({
   gameWon = {},
   currentRecord,
   playerName = "name-3",
+  popupContainer = {},
+  popupGameWon = {},
+  text = "This is the default text value",
+  popupContainerGamewon = {},
 }) {
   return (
     <_Component
       className={_utils.cx(_styles, "popup-component")}
       tag="div"
-      {...gameWon}
+      {...popupContainerGamewon}
     >
       <_Builtin.Block
         className={_utils.cx(_styles, "popup-container")}
