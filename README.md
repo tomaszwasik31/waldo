@@ -60,17 +60,30 @@ The Waldo App includes a scoreboard to track and display the highest scores achi
 To ensure a fair and competitive environment, the scoreboard records the time taken by each player to find Waldo. The scores are displayed in descending order, with the fastest times at the top.
 
 ## Firestore Integration
-The Waldo App leverages Firestore, a flexible and scalable NoSQL database provided by Firebase, to manage the scoreboard functionality. Firestore allows storing and retrieving data in real time, enabling seamless updates to the leaderboard as players achieve high scores.
+The Waldo App leverages Firestore, a flexible and scalable NoSQL database provided by Firebase, to manage the scoreboard functionality. Firestore allows storing and retrieving data in real-time, enabling seamless updates to the leaderboard as players achieve high scores.
 
-The integration with Firestore provides the following benefits:
 
-Real-Time Updates: The leaderboard is automatically updated in real-time as new scores are added or existing scores change.
-Scalability: Firestore can handle a large number of concurrent users and high write/read loads, ensuring the app remains responsive even during peak usage.
-Data Persistence: Scores and player information are securely stored in the cloud, ensuring data integrity and availability.
-Contributing
+## Contributing
+
 Contributions to the Waldo App are welcome! If you would like to contribute, please follow these guidelines:
 
+1. Fork the repository and create your branch:
 
+   ```
+   git checkout -b my-feature
 
+2. Make your changes and commit them:
+
+```
+git commit -m "Add my feature"
+```
+
+3. Push your changes to the remote repository:
+  ```
+git push origin my-feature
+```
+4. Create a pull request outlining your changes.
+
+   
 ***License
 The Waldo App is licensed under the MIT License.
