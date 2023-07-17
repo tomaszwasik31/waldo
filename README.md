@@ -4,6 +4,10 @@
 
 This is the documentation for the Waldo App, a game where players search for Waldo in various pictures. The app utilizes Firestore for the scoreboard functionality and Webflow for the frontend design.
 
+## Live Version
+
+You can play the live version of the Waldo App by visiting the following link: [Waldo App Live Version](https://waldo-tomaszwasik31.vercel.app/).
+
 ## Game Description
 
 The Waldo App is a fun game that challenges players to find Waldo, the elusive character, in different pictures. The goal is to locate Waldo as quickly as possible to earn a high score.
@@ -23,9 +27,6 @@ More about DevLink [here](https://webflow.com/devlink)
 
 To access the Webflow development environment and view the frontend design of the Waldo App, use the following link: [Waldo App Webflow Development](https://preview.webflow.com/preview/waldo-app-4c8813?utm_medium=preview_link&utm_source=designer&utm_content=waldo-app-4c8813&preview=51e66a79738bdbbe790f3f88db5f0a3f&workflow=preview).
 
-## Live Version
-
-You can play the live version of the Waldo App by visiting the following link: [Waldo App Live Version](https://waldo-tomaszwasik31.vercel.app/).
 
 ## Installation
 
